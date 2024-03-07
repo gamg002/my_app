@@ -14,9 +14,11 @@ class PrintPDF extends StatefulWidget {
   double? price, sum, priceOfValue, priceOfQuantity, texRate = 0.00;
   int? sigcaAController, sigcaBController, degreeController = 0;
   bool? isClickA;
+  String? product;
 
   PrintPDF({
     Key? key,
+    this.product,
     this.price,
     this.sum,
     this.priceOfValue,
@@ -143,6 +145,8 @@ class _PrintPDFState extends State<PrintPDF> {
           children: [
             imageZone(),
             headerText("สรุปภาษีสรรพสามิต"),
+            const SizedBox(height: 20),
+            borderWite("ชื่อสินค้า", widget.product ?? "ชื่อสินค้า"),
             const SizedBox(height: 10),
             borderWite("สินค้าที่มีราคาขายปลีกแนะนำ", "VOXX"),
             const SizedBox(height: 10),
@@ -207,6 +211,8 @@ class _PrintPDFState extends State<PrintPDF> {
       children: [
         imageZone(),
         headerText("สรุปภาษีสรรพสามิต"),
+        const SizedBox(height: 20),
+        borderWite("ชื่อสินค้า", widget.product ?? "ชื่อสินค้า"),
         const SizedBox(height: 10),
         borderWite("สินค้าที่มีราคาขายปลีกแนะนำ", "VOXX"),
         const SizedBox(height: 10),
@@ -348,19 +354,25 @@ class _PrintPDFState extends State<PrintPDF> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                setText(
-                  first,
-                  TextAlign.left,
-                  FontWeight.bold,
-                  Colors.black,
-                  10,
+                SizedBox(
+                  width: 150,
+                  child: setText(
+                    first,
+                    TextAlign.left,
+                    FontWeight.bold,
+                    Colors.black,
+                    10,
+                  ),
                 ),
-                setText(
-                  second,
-                  TextAlign.end,
-                  FontWeight.bold,
-                  Colors.black,
-                  10,
+                SizedBox(
+                  width: 170,
+                  child: setText(
+                    second,
+                    TextAlign.end,
+                    FontWeight.bold,
+                    Colors.black,
+                    10,
+                  ),
                 ),
               ]),
         ),

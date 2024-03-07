@@ -28,16 +28,26 @@ class _CalculationState extends State<Calculation> {
     super.initState();
   }
 
-  Future onRefresh() async {
+  Future<void> onRefresh() async {
+    setState(() {
+      getProduct();
+      getAlcoholProduct();
+      setProfile();
+      clearDataUi();
+    });
+  }
+
+  void clearDataUi() {
     productError = false;
     sigcaAController.text = "0";
     sigcaBController.text = "0";
     degreeController.text = "0";
     productController.text = "";
     showPrice = 0;
-    setProfile();
-    getProduct();
-    getAlcoholProduct();
+    sumTax = 0;
+    priceOfValue = 0;
+    priceOfQuantity = 0;
+    texRate = 0;
   }
 
   final focus = FocusNode();
@@ -471,13 +481,7 @@ class _CalculationState extends State<Calculation> {
         itemHeight: 45,
         onTap: () {
           setState(() {
-            productController.text = '';
-            selectProduct = Product(
-              prouctName: null,
-              price: null,
-              priceTax: null,
-              lite: null,
-            );
+            clearDataUi();
           });
         },
         onTapOutside: (x) {
@@ -1080,6 +1084,7 @@ class _CalculationState extends State<Calculation> {
   void navigateToPrintPDF() {
     Navigator.of(context).push(MaterialPageRoute(
         builder: (_) => PrintPDF(
+              product: productController.text,
               price: showPrice,
               sum: sumTax,
               priceOfValue: priceOfValue,
