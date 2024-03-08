@@ -12,7 +12,7 @@ import 'package:screenshot/screenshot.dart';
 
 class PrintPDF extends StatefulWidget {
   double? price, sum, priceOfValue, priceOfQuantity, texRate = 0.00;
-  int? sigcaAController, sigcaBController, degreeController = 0;
+  int? sigcaAController, sigcaBController, degreeController, numberOfBottle = 0;
   bool? isClickA;
   String? product;
 
@@ -27,6 +27,7 @@ class PrintPDF extends StatefulWidget {
     this.sigcaAController,
     this.sigcaBController,
     this.degreeController,
+    this.numberOfBottle,
     this.isClickA,
   }) : super(key: key);
 
@@ -148,8 +149,6 @@ class _PrintPDFState extends State<PrintPDF> {
             const SizedBox(height: 20),
             borderWite("ชื่อสินค้า", widget.product ?? "ชื่อสินค้า"),
             const SizedBox(height: 10),
-            borderWite("สินค้าที่มีราคาขายปลีกแนะนำ", "VOXX"),
-            const SizedBox(height: 10),
             borderBlue(
                 "ราคา", "${NumberFormat("#,###.00").format(widget.price)} บาท"),
             taxField(),
@@ -213,8 +212,6 @@ class _PrintPDFState extends State<PrintPDF> {
         headerText("สรุปภาษีสรรพสามิต"),
         const SizedBox(height: 20),
         borderWite("ชื่อสินค้า", widget.product ?? "ชื่อสินค้า"),
-        const SizedBox(height: 10),
-        borderWite("สินค้าที่มีราคาขายปลีกแนะนำ", "VOXX"),
         const SizedBox(height: 10),
         borderBlue(
             "ราคา", "${NumberFormat("#,###.00").format(widget.price)} บาท"),
@@ -406,6 +403,11 @@ class _PrintPDFState extends State<PrintPDF> {
               visible: (widget.isClickA ?? true) == false,
               child: summaryField('ดีกรี',
                   "${NumberFormat("#,###").format(widget.degreeController)} ดีกรี"),
+            ),
+            Visibility(
+              visible: (widget.isClickA ?? true) == false,
+              child: summaryField('จำนวนขวด',
+                  "${NumberFormat("#,###").format(widget.numberOfBottle)} ขวด"),
             ),
             const SizedBox(
               height: 8,

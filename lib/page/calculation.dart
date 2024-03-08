@@ -21,6 +21,7 @@ class _CalculationState extends State<Calculation> {
     sigcaAController.text = "0";
     sigcaBController.text = "0";
     degreeController.text = "0";
+    numberOfBottleController.text = "1";
     showPrice = 0;
     setProfile();
     getProduct();
@@ -42,6 +43,7 @@ class _CalculationState extends State<Calculation> {
     sigcaAController.text = "0";
     sigcaBController.text = "0";
     degreeController.text = "0";
+    numberOfBottleController.text = "1";
     productController.text = "";
     showPrice = 0;
     sumTax = 0;
@@ -59,6 +61,7 @@ class _CalculationState extends State<Calculation> {
   final sigcaAController = TextEditingController();
   final sigcaBController = TextEditingController();
   final degreeController = TextEditingController();
+  final numberOfBottleController = TextEditingController();
   bool isClickA = true;
   bool isClickB = false;
   bool isClickC = false;
@@ -255,39 +258,6 @@ class _CalculationState extends State<Calculation> {
             searchSection(focus),
             buttonSearch(),
             const SizedBox(height: 15),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: Container(
-                decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 1,
-                      color: Colors.black,
-                    ),
-                    borderRadius: const BorderRadius.all(Radius.circular(10))),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        setText(
-                          "สินค้าที่มีราคาขายปลีกแนะนำ",
-                          TextAlign.left,
-                          FontWeight.bold,
-                          Colors.black,
-                          15,
-                        ),
-                        setText(
-                          "VOXX",
-                          TextAlign.end,
-                          FontWeight.bold,
-                          Colors.black,
-                          15,
-                        ),
-                      ]),
-                ),
-              ),
-            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
               child: Container(
@@ -638,8 +608,8 @@ class _CalculationState extends State<Calculation> {
           children: [
             Visibility(
               visible: isClickA,
-              child:
-                  visibilitiContainer('จำนวนต่อซอง', 'มวน', sigcaAController),
+              child: visibilitiContainer(
+                  'จำนวนต่อมวนต่อซอง', 'มวน', sigcaAController),
             ),
             Visibility(
               visible: isClickA,
@@ -649,6 +619,11 @@ class _CalculationState extends State<Calculation> {
             Visibility(
               visible: isClickB || isClickC,
               child: visibilitiContainer('ดีกรี', 'ดีกรี', degreeController),
+            ),
+            Visibility(
+              visible: isClickB || isClickC,
+              child: visibilitiContainer(
+                  'จำนวนขวด', 'ขวด', numberOfBottleController),
             ),
             const SizedBox(
               height: 8,
@@ -1025,27 +1000,29 @@ class _CalculationState extends State<Calculation> {
     double price = double.parse(selectProduct?.price ?? '0');
     double lite = double.parse(selectProduct?.lite ?? '0');
     double degree = double.parse(degreeController.text);
+    double bottle = double.parse(numberOfBottleController.text);
 
     priceOfValue = price * 0.20;
     priceOfQuantity = (lite * degree * 255) * 0.01;
-    texRate = lite * (priceOfQuantity + priceOfValue);
+    texRate = (lite * (priceOfQuantity + priceOfValue)) * bottle;
   }
 
   Future getDataWine() async {
     double price = double.parse(selectProduct?.price ?? '0');
     double lite = double.parse(selectProduct?.lite ?? '0');
     double degree = double.parse(degreeController.text);
+    double bottle = double.parse(numberOfBottleController.text);
 
     if (price > 1000.00) {
       priceOfValue = price * 0.10;
       priceOfQuantity = (lite * degree * 1500) * 0.01;
-      texRate = lite * (priceOfQuantity + priceOfValue);
+      texRate = (lite * (priceOfQuantity + priceOfValue)) * bottle;
     }
 
     if (price <= 1000.00) {
       priceOfValue = price * 0.0;
       priceOfQuantity = (lite * degree * 1500) * 0.01;
-      texRate = lite * (priceOfQuantity + priceOfValue);
+      texRate = (lite * (priceOfQuantity + priceOfValue)) * bottle;
     }
   }
 
@@ -1094,6 +1071,7 @@ class _CalculationState extends State<Calculation> {
               sigcaBController: int.parse(sigcaBController.text),
               degreeController: int.parse(degreeController.text),
               isClickA: isClickA,
+              numberOfBottle: int.parse(numberOfBottleController.text),
             )));
   }
 }
