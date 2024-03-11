@@ -282,7 +282,7 @@ class _CalculationState extends State<Calculation> {
                           15,
                         ),
                         setText(
-                          "${NumberFormat("#,###.##").format(showPrice)} บาท",
+                          "${NumberFormat("#,##0.0000").format(showPrice)} บาท",
                           TextAlign.end,
                           FontWeight.bold,
                           Colors.white,
@@ -327,7 +327,7 @@ class _CalculationState extends State<Calculation> {
                           15,
                         ),
                         setText(
-                          "${NumberFormat("#,###.##").format(sumTax)} บาท",
+                          "${NumberFormat("#,##0.0000").format(sumTax)} บาท",
                           TextAlign.end,
                           FontWeight.bold,
                           Colors.white,
@@ -736,10 +736,10 @@ class _CalculationState extends State<Calculation> {
         child: Column(
           children: [
             summaryField('ภาษีสรรพสามิตตามมูลค่า',
-                NumberFormat("#,###.##").format(priceOfValue)),
+                NumberFormat("#,##0.0000").format(priceOfValue)),
             summaryField('ภาษีสรรพสามิตตามปริมาณ',
-                NumberFormat("#,###.##").format(priceOfQuantity)),
-            summaryField('อัตราภาษี', NumberFormat("#,###.##").format(texRate)),
+                NumberFormat("#,##0.0000").format(priceOfQuantity)),
+            summaryField('อัตราภาษี', NumberFormat("#,##0.0000").format(texRate)),
             const SizedBox(
               height: 8,
             )

@@ -150,11 +150,11 @@ class _PrintPDFState extends State<PrintPDF> {
             borderWite("ชื่อสินค้า", widget.product ?? "ชื่อสินค้า"),
             const SizedBox(height: 10),
             borderBlue(
-                "ราคา", "${NumberFormat("#,###.00").format(widget.price)} บาท"),
+                "ราคา", "${NumberFormat("#,##0.0000").format(widget.price)} บาท"),
             taxField(),
             quantityField(),
             borderBlue("ปริมาณการค่าปรับ",
-                "${NumberFormat("#,###.00").format(widget.sum)} บาท"),
+                "${NumberFormat("#,##0.0000").format(widget.sum)} บาท"),
             const SizedBox(height: 30),
           ],
         ),
@@ -214,11 +214,11 @@ class _PrintPDFState extends State<PrintPDF> {
         borderWite("ชื่อสินค้า", widget.product ?? "ชื่อสินค้า"),
         const SizedBox(height: 10),
         borderBlue(
-            "ราคา", "${NumberFormat("#,###.00").format(widget.price)} บาท"),
+            "ราคา", "${NumberFormat("#,##0.0000").format(widget.price)} บาท"),
         taxField(),
         quantityField(),
         borderBlue("ปริมาณการค่าปรับ",
-            "${NumberFormat("#,###.00").format(widget.sum)} บาท"),
+            "${NumberFormat("#,##0.0000").format(widget.sum)} บาท"),
         const SizedBox(height: 30),
       ],
     );
@@ -431,11 +431,11 @@ class _PrintPDFState extends State<PrintPDF> {
         child: Column(
           children: [
             taxSumField('ภาษีสรรพสามิตตามมูลค่า',
-                NumberFormat("#,###.00").format(widget.priceOfValue)),
+                NumberFormat("#,##0.0000").format(widget.priceOfValue)),
             taxSumField('ภาษีสรรพสามิตตามปริมาณ',
-                NumberFormat("#,###.00").format(widget.priceOfQuantity)),
+                NumberFormat("#,##0.0000").format(widget.priceOfQuantity)),
             taxSumField(
-                'อัตราภาษี', NumberFormat("#,###.00").format(widget.texRate)),
+                'อัตราภาษี', NumberFormat("#,##0.0000").format(widget.texRate)),
             const SizedBox(
               height: 8,
             )
