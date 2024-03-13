@@ -248,12 +248,31 @@ class _CalculationState extends State<Calculation> {
               Colors.black,
               14,
             ),
-            setText(
-              "สำนักงานสรรพสามิตพื้นที่ พังงา",
-              TextAlign.center,
-              FontWeight.w700,
-              Colors.black,
-              14,
+            Padding(
+              padding: const EdgeInsets.only(right: 20, top: 10),
+              child: Container(
+                alignment: Alignment.bottomRight,
+                child: setText(
+                  showName,
+                  TextAlign.end,
+                  FontWeight.w700,
+                  Colors.black,
+                  14,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 20, bottom: 10),
+              child: Container(
+                alignment: Alignment.bottomRight,
+                child: setText(
+                  showRole,
+                  TextAlign.end,
+                  FontWeight.w700,
+                  Colors.black,
+                  14,
+                ),
+              ),
             ),
             searchSection(focus),
             buttonSearch(),
@@ -739,7 +758,8 @@ class _CalculationState extends State<Calculation> {
                 NumberFormat("#,##0.0000").format(priceOfValue)),
             summaryField('ภาษีสรรพสามิตตามปริมาณ',
                 NumberFormat("#,##0.0000").format(priceOfQuantity)),
-            summaryField('อัตราภาษี', NumberFormat("#,##0.0000").format(texRate)),
+            summaryField(
+                'อัตราภาษี', NumberFormat("#,##0.0000").format(texRate)),
             const SizedBox(
               height: 8,
             )
