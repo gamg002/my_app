@@ -339,7 +339,7 @@ class _CalculationState extends State<Calculation> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         setText(
-                          "ปริมาณค่าปรับ",
+                          "ประมาณการค่าปรับ",
                           TextAlign.left,
                           FontWeight.bold,
                           Colors.white,
